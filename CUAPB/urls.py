@@ -13,9 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
+
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+
+
 urlpatterns = [
+    url(r'^police_archive/', include('police_archive.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^$', lambda request: HttpResponseRedirect('/search/'), name='redirect_search'),
+    url(r'^search/', include('haystack.urls'))
+    
 ]

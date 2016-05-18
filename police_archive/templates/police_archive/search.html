@@ -1,0 +1,18 @@
+{% extends 'police_archive/base.html' %}
+
+{% block content %}
+    
+	<form type="get" action=".">
+	    <input type="text" name="q">
+	    <button type="submit">Search</button>
+	</form>
+
+	{% if officers %}
+		{% for officer in officers %}
+			<h1>{{ officer.last_name }}, {{officer.first_name}}</h1>
+			 {% empty %}
+                <p>No results found.</p>
+		{% endfor %}
+	{% endif %}
+
+{% endblock %}
