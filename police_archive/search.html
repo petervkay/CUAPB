@@ -3,7 +3,7 @@
 {% block content %}
     <h2>Search</h2>
 
-    <form method="get" action=".">
+    <form method="get" action="{% url 'police_archive:results' %}">
         <table>
             {{ form.as_table }}
             <tr>
@@ -14,6 +14,11 @@
             </tr>
         </table>
 
+
+        {% if query %}
+            <p>You searchd for &quot;{{ query }}&quot;</p>
+        {% endif %}
+        
         {% if query %}
             <h3>Results</h3>
 

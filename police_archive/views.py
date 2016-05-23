@@ -1,26 +1,74 @@
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponse
-from django.template import loader
-from .models import Officer, Incident
-from .forms import SearchForm
+from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.db.models import Q
+from models import Officer, Incident
+
+from forms import SearchForm, ComplaintSearchForm
 
 def search(request):
-    form = SearchForm(request.GET)
-    officers = form.search()
-    return render_to_response('police_archive/search.html', {'officers': officers})
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = SearchForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
 
-def index(request):
-	officer_list = Officer.objects.order_by('last_name')
-	
-	context= {
-		'officer_list': officer_list,
-	}
-	return render(request, 'police_archive/index.html', context)
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = SearchForm()
+
+      # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        complaint_form = ComplaintSearchForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        complaint_form = ComplaintSearchForm()
+
+    return render(request, 'police_archive/search.html', {'form': form, 'complaint_form': complaint_form})
+
+def results(request):
+	text = request.GET.get('text', 'default')
+	department = request.GET.get('department', 'default')
+
+	try:
+		int(text)
+		badge=text
+	except:
+		badge=999999999999   #if text is not a number, make badge number irrelevant
+
+
+	search_results=Officer.objects.all().filter(
+    Q(first_name__icontains=text) | Q(last_name__icontains=text) | Q(badge=badge), Q(department__icontains=department)
+)
+
+	return render(request, 'police_archive/results.html', {'text':text,'department':department, 'search_results':search_results})
+
+def complaint_results(request):
+	input = request.GET.get('input', 'default')
+	search_results=Incident.objects.all().filter(case_number=input)
+	return render(request, 'police_archive/complaint_results.html', {'search_results':search_results})
 
 def officer(request, officer_badge):
-    return HttpResponse("You're looking at the officer with badge #%s." % officer_badge)
+	officer = Officer.objects.all().get(badge=officer_badge)
+	details_list= officer.details_set.all()
+	incident_list=[]
+	for details in details_list :
+		incident_list.append(details.incident)
 
-def incident(request, case_number):
-    return HttpResponse("You're looking at incident %s." % case_number)
+	return render(request, 'police_archive/officer.html', {'officer':officer,'details_list':details_list, "incident_list":incident_list})
 
-
+def incident(request, incident_id):
+	incident=Incident.objects.all().get(id=incident_id)
+	return render(request, 'police_archive/incident.html', {'incident':incident})

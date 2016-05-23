@@ -14,6 +14,11 @@
             </tr>
         </table>
 
+
+        {% if query %}
+            <p>You searchd for &quot;{{ query }}&quot;</p>
+        {% endif %}
+        
         {% if query %}
             <h3>Results</h3>
 

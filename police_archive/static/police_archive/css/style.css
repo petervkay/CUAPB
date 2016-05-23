@@ -1,0 +1,174 @@
+body {
+	font-family:'Droid Sans', sans-serif;
+}
+
+.site-logo {
+	float:left;
+}
+
+.title-container, .site-logo img {
+	height:100px;
+}
+
+.title-container .title {
+	text-align: center;
+    padding-top: 24px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.title-container .title a {
+	font-family: "Oswald",sans-serif;
+    color: #53cfd7;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 48px;
+    text-transform:uppercase;
+}
+
+.nav-container {
+	background: #000;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 5;
+    border-bottom: 0;
+    margin-top:15px;
+}
+
+@media only screen and (min-width: 1140px){
+.width-container {
+    width: 95%;
+    margin: 0 auto;
+}
+}
+
+@media only screen and (min-width: 768px) {
+nav, .subnav {
+    background-color: transparent;
+    border-right: 0;
+    border-top: 0;
+    height: auto;
+    margin: 0;
+    position: static;
+    width: auto;
+    top: 0;
+    left: -16em;
+    padding: 5px 0;
+}
+}
+
+nav .topnav, .subnav .topnav {
+    clear: both;
+    list-style: none;
+    margin:0;
+}
+
+
+@media only screen and (min-width: 768px) {
+nav li:hover, nav li.active, .subnav li:hover, .subnav li.active {
+    border-color: transparent;
+    background-color: #53cfd7;
+    color: #000;
+}
+
+nav li, .subnav li {
+    font-family: "Oswald",sans-serif;
+    display: inline-block;
+    margin: 0 10px 0 0;
+    position: relative;
+    background-color: #000;
+    border: 0;
+    line-height: 55px;
+    text-transform: uppercase;
+    list-style: none;
+    font-size: 15px;
+}
+
+}
+
+li.active a, .subnav li:hover a, .subnav li.active a {
+    color: #000;
+}
+
+nav li a, .subnav li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    padding: 0 15px 0;
+    text-decoration:none;
+}
+
+
+
+/* search.html */
+
+.officer_search_form table {
+	width: 800px;
+	table-layout:fixed;
+}
+
+.officer_search_form th {
+	width:200px;
+	text-align: right;
+}
+
+.officer_search_form td {
+	width:600px;
+	height:70px;
+}
+
+.officer_search_form td input, .officer_search_form td select  {
+	width:100%;
+	height:40%;
+	font-size:16px;
+}
+
+/*results.html, complaint_results.html */
+
+.results h2 {
+	font-size:24px;
+}
+
+.results ul {
+	font-size:20px;
+}
+
+/* Footer */
+
+footer {
+	text-align: center;
+    width: 100%;
+    position:fixed;
+    bottom:0;
+    background-color:black;
+}
+
+footer a {
+	text-decoration:none;
+}
+
+footer .donate-strip {
+	text-align: center;
+    width: 100%;
+    background-color: #53cfd7;
+    padding: 4px 0;
+}
+
+footer .donate-strip p {
+	margin:0;
+	color: black!important;
+    font-weight: 600;
+}
+
+footer .credits {
+	color:white;
+}
+
+footer .credits a {
+	color:white;
+}
+
+footer .credits a:hover {
+	color:#f00;
+}

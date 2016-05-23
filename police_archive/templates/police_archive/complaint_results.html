@@ -1,0 +1,16 @@
+{% extends 'police_archive/base.html' %}
+
+{% block content %}
+	<div class='results'>
+	    <h2>Results</h2>
+	    {% if search_results %}
+		    <ul>
+		    {% for incident in search_results %}
+		       <a href='/police_archive/complaint/{{incident.case_number}}'> <li>{{incident.case_number}}</li> </a>
+		    {% endfor %}
+		    </ul>
+		{% else %}
+			No Results Found.
+		{% endif %}
+	</div>
+{% endblock %}

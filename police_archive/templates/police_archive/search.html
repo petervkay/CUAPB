@@ -1,18 +1,39 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
-    
-	<form type="get" action=".">
-	    <input type="text" name="q">
-	    <button type="submit">Search</button>
-	</form>
+	<div id='search-info'>
+   	 <h2>CUAPB Police Complaint Archive</h2>
+   	 <p> CUAPB has spent years using data practices requests to obtain public records about formal police complaints.  The public has a right to this information, but the government does nothing to make it publicly available.  This archive provides a means for citizens to search an officer's name and see the complaints that have been brought against them.  The archive is extensive, but does not include all complaints made against officers.  It also does not include the countless complaints that do not make it into the formal system of an office of the goverment.</p>
 
-	{% if officers %}
-		{% for officer in officers %}
-			<h1>{{ officer.last_name }}, {{officer.first_name}}</h1>
-			 {% empty %}
-                <p>No results found.</p>
-		{% endfor %}
-	{% endif %}
+   	 <p> This system is fairly new. Please contact us with any feedback. </p>
+   	</div>
+   	<div class='officer_search_form'>
+   		<h2> Search by Officer </h2>
+	    <form method="get" action="results">
+	        <table>
+	            {{ form }}
+	            <tr>
+	                <td>&nbsp;</td>
+	                <td>
+	                    <input type="submit" value="Search">
+	                </td>
+	            </tr>
+	        </table>
+	    </form>
+	</div>
 
+	<div class='officer_search_form'>
+   		<h2> Search by Complaint </h2>
+	    <form method="get" action="complaint_results">
+	        <table>
+	            {{ complaint_form }}
+	            <tr>
+	                <td>&nbsp;</td>
+	                <td>
+	                    <input type="submit" value="Search">
+	                </td>
+	            </tr>
+	        </table>
+	    </form>
+	</div>
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'police_archive/base.html' %}
+
+{% block content %}
+	<div class='results'>
+	    <h2>Results</h2>
+	    {% if search_results %}
+		    <ul>
+		    {% for officer in search_results %}
+		       <a href='/police_archive/officer/{{officer.badge}}'> <li>{{officer.last_name}}, {{officer.first_name}}. #{{officer.badge}}. {{officer.department}}.</li> </a>
+		    {% endfor %}
+		    </ul>
+		{% else %}
+			No Results Found.
+		{% endif %}
+	</div>
+
+{% endblock %}
