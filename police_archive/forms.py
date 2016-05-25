@@ -1,5 +1,5 @@
 from django import forms
-from models import Officer
+from police_archive.models import Officer
 
 class SearchForm(forms.Form):
     text = forms.CharField(label='Name or Badge Number', max_length=100)

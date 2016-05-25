@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
-from models import Officer, Incident
+from police_archive.models import Officer, Incident
 
-from forms import SearchForm, ComplaintSearchForm
+from police_archive.forms import SearchForm, ComplaintSearchForm
 
 def search(request):
     # if this is a POST request we need to process the form data

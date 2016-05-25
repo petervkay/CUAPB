@@ -13,6 +13,6 @@ urlpatterns = [
 
     # url(r'^officer/(?P<officer_badge>\d+)/', views.officer, name='officer'),
     # url(r'^incident/(?P<case_number>\w+\-\w+)/', views.incident, name='incident'),
-    
+
 
 ]
