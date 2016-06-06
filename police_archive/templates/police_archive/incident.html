@@ -1,5 +1,27 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
-   You're looking at complaint {{incident.case_number}}
+	
+<h2> Complaint #{{incident.case_number}}, {{incident.get_office_display }} </h2>
+
+<table>
+	<tr>
+		<th> Officer </th>
+		<th> Department </th>
+		<th> Allegation </th>
+		<th> Finding </th>
+		<th> Chief's Action </th>
+	</tr>
+
+	{% for details in details_list %}
+	<tr>
+		<td><a href='/police_archive/officer/{{details.officer.badge}}'> {{details.officer}} </a></td>
+		<td>{{details.department}}</td>
+		<td>{{details.allegation}}</td>
+		<td>{{details.finding}}</td>
+		<td>{{details.action}}</td>
+	</tr>
+	{% endfor %}
+</table>
+
 {% endblock %}

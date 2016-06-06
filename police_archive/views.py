@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
-from police_archive.models import Officer, Incident
+from police_archive.models import Officer, Incident, Details
 
 from police_archive.forms import SearchForm, ComplaintSearchForm
 
@@ -70,5 +70,7 @@ def officer(request, officer_badge):
 	return render(request, 'police_archive/officer.html', {'officer':officer,'details_list':details_list, "incident_list":incident_list})
 
 def incident(request, incident_id):
-	incident=Incident.objects.all().get(id=incident_id)
-	return render(request, 'police_archive/incident.html', {'incident':incident})
+	incident=Incident.objects.all().get(case_number=incident_id)
+	officer_list = incident.officers2.all()
+	details_list = Details.objects.filter(incident=incident)      
+	return render(request, 'police_archive/incident.html', {'incident':incident, 'officer_list':officer_list, 'details_list':details_list})

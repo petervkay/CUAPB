@@ -7,7 +7,7 @@
     <ul>
     	{% for details in details_list %}
     		<li>
-    			<a href='/police_archive/complaint/{{details.incident.id}}'>
+    			<a href='/police_archive/complaint/{{details.incident.case_number}}'>
     			{% if details.incident.case_number %}
 	    			{{details.incident.case_number}}
 	    		{% else %}
@@ -16,7 +16,7 @@
 	    		</a>
 
 	    		{% if details.incident.office %}
-	    			, {{details.incident.office}}
+	    			, {{details.incident.get_office_display}}
 	    		{% else %}
 	    			, No office found
 	    		{% endif %}

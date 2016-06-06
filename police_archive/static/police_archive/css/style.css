@@ -64,7 +64,6 @@ nav .topnav, .subnav .topnav {
 }
 
 
-@media only screen and (min-width: 768px) {
 nav li:hover, nav li.active, .subnav li:hover, .subnav li.active {
     border-color: transparent;
     background-color: #53cfd7;
@@ -84,7 +83,7 @@ nav li, .subnav li {
     font-size: 15px;
 }
 
-}
+
 
 li.active a, .subnav li:hover a, .subnav li.active a {
     color: #000;
@@ -139,7 +138,6 @@ nav li a, .subnav li a {
 footer {
 	text-align: center;
     width: 100%;
-    position:fixed;
     bottom:0;
     background-color:black;
 }
@@ -163,6 +161,11 @@ footer .donate-strip p {
 
 footer .credits {
 	color:white;
+    padding:3px 0;
+}
+
+footer .credits p {
+    margin:0;
 }
 
 footer .credits a {
@@ -172,3 +175,59 @@ footer .credits a {
 footer .credits a:hover {
 	color:#f00;
 }
+
+.tablet-visible {
+    margin-bottom:20px;
+}
+
+.site-logo, .title-container {
+    height:auto;
+}
+
+@media only screen and (max-width: 1100px){
+.site-logo, .title-container {
+    height:auto;
+}
+}
+
+@media only screen and (max-width: 400px){
+
+.site-logo {
+    display:none;
+}
+
+.officer_search_form table, .officer_search_form tbody, .officer_search_form tr, .officer_search_form th, table .officer_search_form td {
+    width:100%;
+    table-layout:auto;
+    text-align:left;
+}
+
+.officer_search_form th {
+    width:40%;
+}
+
+.officer_search_form input {
+    width:200px;
+}
+
+.officer_search_form table tr {
+    text-align:left;
+}
+
+}
+
+
+/* Complaint single */
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+ th, td {
+    text-align:left;
+    vertical-align:middle;
+    padding:10px;
+ }

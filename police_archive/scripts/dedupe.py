@@ -17,10 +17,11 @@ def run() :
 		
 
 	#first entry was empty, remove first entry
-	for number in g[1:] :
+	for number in g[:1:] :
 		
-		#get list of incident objets
+	#get list of incident objets
 		old_incidents=Incident.objects.filter(case_number=number);
+		print old_incidents
 		
 		#make new object to replace old ones
 		new_incident = Incident(case_number=number)
@@ -33,22 +34,23 @@ def run() :
 			details_list = details_list | results
 
 		#delete old_incidents so that details can be modified
-		old_incidents.delete()
+		
 		new_incident.save()
 		
 		#create new details objects pointing to new incident object, delete old details object
 		for details in details_list:
-			new_details = Details(incident=new_incident,officer=details.officer, allegation=details.allegation, finding=details.finding, action=details.action)
+			
+			new_details = Details.objects.create(incident=new_incident,officer=details.officer, allegation=details.allegation, finding=details.finding, action=details.action)
 			new_details.save()
 			details.delete()
-			#details.save()
 		
-		 
 
-	
+		#delete old incidents not new_incident
+		junk = old_incidents.exclude(pk=new_incident.pk)
+		print junk
+		junk.delete()
+		
 
-				
-		#new_incident.save()
 
 
 		
