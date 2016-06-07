@@ -27,6 +27,6 @@ urlpatterns = [
     url(r'^police_archive/', include('police_archive.urls')),
     url(r'^admin/', admin.site.urls),
  
-    
+
     
 ]

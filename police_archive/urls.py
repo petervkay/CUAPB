@@ -1,6 +1,8 @@
 from django.conf.urls import url
-
+from django.conf.urls import handler404
 from . import views
+
+
 
 urlpatterns = [
 	url(r'^$', views.search, name='index'),
@@ -9,6 +11,8 @@ urlpatterns = [
 	url(r'^complaint_results/$', views.complaint_results, name='complaint_results'),
 	url(r'^officer/(?P<officer_badge>\d+)/', views.officer, name='officer'),
 	url(r'^complaint/(?P<incident_id>[0-9-]+)/', views.incident, name='incident'),
+	url(r'^browse/(?P<letter>\w)/', views.browse, name='browse')
+	
 
 
     # url(r'^officer/(?P<officer_badge>\d+)/', views.officer, name='officer'),

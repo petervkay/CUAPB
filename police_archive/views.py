@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
 from police_archive.models import Officer, Incident, Details
-
+from string import ascii_uppercase
+from django.template import RequestContext
 from police_archive.forms import SearchForm, ComplaintSearchForm
 
 def search(request):
@@ -36,7 +37,7 @@ def search(request):
     else:
         complaint_form = ComplaintSearchForm()
 
-    return render(request, 'police_archive/search.html', {'form': form, 'complaint_form': complaint_form})
+    return render(request, 'police_archive/search.html', {'form': form, 'complaint_form': complaint_form, 'alphabet':ascii_uppercase})
 
 def results(request):
 	text = request.GET.get('text', 'default')
@@ -52,7 +53,7 @@ def results(request):
 	search_results=Officer.objects.all().filter(
     Q(first_name__icontains=text) | Q(last_name__icontains=text) | Q(badge=badge), Q(department__icontains=department)
 )
-
+	search_results = search_results.order_by('last_name')
 	return render(request, 'police_archive/results.html', {'text':text,'department':department, 'search_results':search_results})
 
 def complaint_results(request):
@@ -72,5 +73,14 @@ def officer(request, officer_badge):
 def incident(request, incident_id):
 	incident=Incident.objects.all().get(case_number=incident_id)
 	officer_list = incident.officers2.all()
+	officer_list = officer_list.order_by('last_name')
 	details_list = Details.objects.filter(incident=incident)      
 	return render(request, 'police_archive/incident.html', {'incident':incident, 'officer_list':officer_list, 'details_list':details_list})
+
+def browse(request, letter):
+	officer_list = Officer.objects.filter(last_name__startswith=letter)
+	officer_list = officer_list.order_by('last_name')
+	return render(request, 'police_archive/browse.html', {'officer_list':officer_list, 'alphabet':ascii_uppercase})
+
+
+

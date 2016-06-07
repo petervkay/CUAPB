@@ -123,6 +123,20 @@ nav li a, .subnav li a {
 	font-size:16px;
 }
 
+ul.letters {
+    list-style: none;
+    padding:0;
+}
+
+ul.letters li {
+    display:inline-block;
+    margin-right:5px;
+}
+
+ul.letters li a {
+    font-size:20px;
+}
+
 /*results.html, complaint_results.html */
 
 .results h2 {
@@ -218,15 +232,15 @@ footer .credits a:hover {
 
 
 /* Complaint single */
-table {
+table.border {
     border-collapse: collapse;
 }
 
-table, th, td {
+table.border,table.border th,table.border td {
     border: 1px solid black;
 }
 
- th, td {
+ table.border th, table.border td {
     text-align:left;
     vertical-align:middle;
     padding:10px;

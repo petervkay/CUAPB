@@ -36,4 +36,14 @@
 	        </table>
 	    </form>
 	</div>
+
+	<div class='browse'>
+		<h2> Browse by Last Name </h2>
+		<ul class='letters'>
+			{% for c in alphabet %}
+				<li><a href='/police_archive/browse/{{c}}'>{{c}}</a></li>
+			{% endfor %}
+		</ul>
+
+	</div>
 {% endblock %}
