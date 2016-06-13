@@ -6,7 +6,7 @@
 	    {% if search_results %}
 		    <ul>
 		    {% for officer in search_results %}
-		       <a href='/police_archive/officer/{{officer.badge}}'> <li>{{officer.last_name}}, {{officer.first_name}}. #{{officer.badge}}. {{officer.department}}.</li> </a>
+		       <a href='/police_archive/officer/{{officer.id}}'> <li>{{officer.last_name}}, {{officer.first_name}}. #{{officer.badge}}. {{officer.department}}.</li> </a>
 		    {% endfor %}
 		    </ul>
 		{% else %}
