@@ -62,7 +62,7 @@ def complaint_results(request):
 	return render(request, 'police_archive/complaint_results.html', {'search_results':search_results})
 
 def officer(request, officer_id):
-	officer = Officer.objects.all().get(id=officer_id)
+	officer = Officer.objects.all().get(badge=officer_id)
 	details_list= officer.details_set.all()
 	incident_list=[]
 	for details in details_list :
@@ -74,7 +74,7 @@ def incident(request, incident_id):
 	incident=Incident.objects.all().get(case_number=incident_id)
 	officer_list = incident.officers2.all()
 	officer_list = officer_list.order_by('last_name')
-	details_list = Details.objects.filter(incident=incident)      
+	details_list = Details.objects.filter(incident=incident)
 	return render(request, 'police_archive/incident.html', {'incident':incident, 'officer_list':officer_list, 'details_list':details_list})
 
 def browse(request, letter):

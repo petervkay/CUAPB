@@ -20,13 +20,13 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from haystack.forms import SearchForm
+
 
 
 urlpatterns = [
     url(r'^police_archive/', include('police_archive.urls')),
     url(r'^admin/', admin.site.urls),
- 
 
-    
+
+
 ]
