@@ -1,7 +1,7 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
-    <h2> {{officer.first_name}} {{officer.last_name}} </h2>
+    <h2> {{officer.first_name}} {{officer.last_name}}, badge #{{officer.badge}} </h2>
     <p><strong>Department:</strong> {{officer.department}}</p>
     <h2>Complaints</h2>
     <ul>

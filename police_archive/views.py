@@ -62,7 +62,8 @@ def complaint_results(request):
 	return render(request, 'police_archive/complaint_results.html', {'search_results':search_results})
 
 def officer(request, officer_id):
-	officer = Officer.objects.all().get(badge=officer_id)
+	officer_id = int(officer_id)
+	officer = Officer.objects.get(id=officer_id)
 	details_list= officer.details_set.all()
 	incident_list=[]
 	for details in details_list :

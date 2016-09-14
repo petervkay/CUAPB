@@ -24,9 +24,6 @@ from django.core.urlresolvers import reverse
 
 
 urlpatterns = [
-    url(r'^police_archive/', include('police_archive.urls')),
-    url(r'^admin/', admin.site.urls),
-
-
-
+	url(r'^police_archive/', include('police_archive.urls')),
+	url(r'^admin/', admin.site.urls),
 ]
