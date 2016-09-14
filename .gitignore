@@ -1,0 +1,7 @@
+*.pyc
+*.pyo
+*.log
+
+/CUAPB/settings.py
+/police_archive/CSV
+/police_archive/scripts

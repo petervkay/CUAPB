@@ -11,7 +11,7 @@ class Officer(models.Model):
     badge = models.IntegerField(blank=True)
     department = models.CharField(max_length=50, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
     	return self.last_name + ', ' + self.first_name
 
      
@@ -31,7 +31,7 @@ class Incident(models.Model):
 	choices=OFFICE_CHOICES,
 	)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.case_number
 
 class Details(models.Model):
@@ -42,7 +42,7 @@ class Details(models.Model):
 	action = models.CharField(max_length=50, blank=True)
 
 
-	def __unicode__(self):
+	def __str__(self):
 		return unicode(self.officer.first_name) + ' '+ unicode(self.officer.last_name)+ ', ' + unicode(self.incident)
 
 	class Meta():
