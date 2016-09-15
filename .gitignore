@@ -5,3 +5,4 @@
 /CUAPB/settings.py
 /police_archive/CSV
 /police_archive/scripts
+db.sqlite3
