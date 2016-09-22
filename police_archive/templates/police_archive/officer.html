@@ -7,31 +7,33 @@
     <ul>
     	{% for details in details_list %}
     		<li>
+                
     			<a href='/police_archive/complaint/{{details.incident.case_number}}'>
     			{% if details.incident.case_number %}
-	    			{{details.incident.case_number}}
+	    		 {{details.incident.case_number}}
 	    		{% else %}
-	    			No Case Number Found
+	    		 No Case Number Found
 	    		{% endif %}
 	    		</a>
 
 	    		{% if details.incident.office %}
-	    			, {{details.incident.get_office_display}}
+	    		 , {{details.incident.get_office_display}}
 	    		{% else %}
-	    			, No office found
+	    		, No office found
 	    		{% endif %}
 
 	    		{% if details.allegation %}
-	    			, {{details.allegation}}, 
+	    		 , {{details.allegation}}
 	    		{% endif %}
 
 	    		{% if details.finding %}
-	    			, {{details.finding}},
+	    		 , {{details.finding}}
 	    		{% endif %}
 
 	    		{% if details.action %}
-	    			, {{details.action}}
-	    		{% endif %}
+	    		 , {{details.action}}
+	    		{% endif %}  
+                       
 	    	</li>
     	{% endfor %}
 
