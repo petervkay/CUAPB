@@ -1,12 +1,13 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
-	<div class='results'>
-	    <h2>Results</h2>
+	<h2 class='page_title'>Complaint Search  Results</h2>
+	<div class='results text-box'>
+	    
 	    {% if search_results %}
 		    <ul>
 		    {% for incident in search_results %}
-		       <a href='/police_archive/complaint/{{incident.case_number}}'> <li>{{incident.case_number}}</li> </a>
+		       <a href='/police_archive/complaint/{{incident.case_number}}'> <li>{{incident.case_number}} </a>, {{incident.get_office_display}}</li>
 		    {% endfor %}
 		    </ul>
 		{% else %}

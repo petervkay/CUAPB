@@ -1,9 +1,0 @@
-{% if officer_list %}
-    <ul>
-	    {% for officer in officer_list %}
-	        <li><a href="/police_archive/officer/{{ officer.badge }}/">{{ officer.first_name }} {{ officer.last_name }}</a></li>
-	    {% endfor %}
-    </ul>
-{% else %}
-    <p>No officers found.</p>
-{% endif %}

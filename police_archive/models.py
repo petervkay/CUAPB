@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from tinymce import models as tinymce_models
+
 
 
 
@@ -47,3 +49,7 @@ class Details(models.Model):
 
 	class Meta():
 		verbose_name_plural = "details"
+
+class SiteText(models.Model):
+	content1 = tinymce_models.HTMLField()
+	content2 = tinymce_models.HTMLField()

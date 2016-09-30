@@ -1,7 +1,7 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
-from police_archive.models import Officer, Incident, Details
+from police_archive.models import Officer, Incident, Details, SiteText
 from string import ascii_uppercase
 from django.template import RequestContext
 from police_archive.forms import SearchForm, ComplaintSearchForm
@@ -37,7 +37,10 @@ def search(request):
     else:
         complaint_form = ComplaintSearchForm()
 
-    return render(request, 'police_archive/search.html', {'form': form, 'complaint_form': complaint_form, 'alphabet':ascii_uppercase})
+    text = SiteText.objects.get(id=1)
+
+    return render(request, 'police_archive/search.html', {
+        'SiteText':text, 'form': form, 'complaint_form': complaint_form, 'alphabet':ascii_uppercase, 'class_name':'home'})
 
 def results(request):
 	text = request.GET.get('text', 'default')
@@ -54,12 +57,14 @@ def results(request):
     Q(first_name__icontains=text) | Q(last_name__icontains=text) | Q(badge=badge), Q(department__icontains=department)
 )
 	search_results = search_results.order_by('last_name')
-	return render(request, 'police_archive/results.html', {'text':text,'department':department, 'search_results':search_results})
+	return render(request, 'police_archive/results.html', {
+        'text':text,'department':department, 'search_results':search_results, 'class_name':'results'})
 
 def complaint_results(request):
 	input = request.GET.get('input', 'default')
 	search_results=Incident.objects.all().filter(case_number=input)
-	return render(request, 'police_archive/complaint_results.html', {'search_results':search_results})
+	return render(request, 'police_archive/complaint_results.html', {
+        'search_results':search_results, 'class_name':'complaint_results'})
 
 def officer(request, officer_id):
 	officer_id = int(officer_id)
@@ -69,19 +74,22 @@ def officer(request, officer_id):
 	for details in details_list :
 		incident_list.append(details.incident)
 
-	return render(request, 'police_archive/officer.html', {'officer':officer,'details_list':details_list, "incident_list":incident_list})
+	return render(request, 'police_archive/officer.html', {
+        'officer':officer,'details_list':details_list, "incident_list":incident_list, 'class_name':'officer'})
 
 def incident(request, incident_id):
 	incident=Incident.objects.all().get(case_number=incident_id)
 	officer_list = incident.officers2.all()
 	officer_list = officer_list.order_by('last_name')
 	details_list = Details.objects.filter(incident=incident)
-	return render(request, 'police_archive/incident.html', {'incident':incident, 'officer_list':officer_list, 'details_list':details_list})
+	return render(request, 'police_archive/incident.html', {
+        'incident':incident, 'officer_list':officer_list, 'details_list':details_list, 'class_name':'incident'})
 
 def browse(request, letter):
 	officer_list = Officer.objects.filter(last_name__startswith=letter)
 	officer_list = officer_list.order_by('last_name')
-	return render(request, 'police_archive/browse.html', {'officer_list':officer_list, 'alphabet':ascii_uppercase})
+	return render(request, 'police_archive/browse.html', {
+        'officer_list':officer_list,'class_name':'browse', 'alphabet':ascii_uppercase})
 
 
 

@@ -1,41 +1,22 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
-    <h2> {{officer.first_name}} {{officer.last_name}}, badge #{{officer.badge}} </h2>
-    <p><strong>Department:</strong> {{officer.department}}</p>
-    <h2>Complaints</h2>
-    <ul>
-    	{% for details in details_list %}
-    		<li>
-                
-    			<a href='/police_archive/complaint/{{details.incident.case_number}}'>
-    			{% if details.incident.case_number %}
-	    		 {{details.incident.case_number}}
-	    		{% else %}
-	    		 No Case Number Found
-	    		{% endif %}
-	    		</a>
 
-	    		{% if details.incident.office %}
-	    		 , {{details.incident.get_office_display}}
-	    		{% else %}
-	    		, No office found
-	    		{% endif %}
-
-	    		{% if details.allegation %}
-	    		 , {{details.allegation}}
-	    		{% endif %}
-
-	    		{% if details.finding %}
-	    		 , {{details.finding}}
-	    		{% endif %}
-
-	    		{% if details.action %}
-	    		 , {{details.action}}
-	    		{% endif %}  
-                       
-	    	</li>
-    	{% endfor %}
+    <h2 class='page_title'> Results </h2>
+    <div class='text-box'>    
+	    <h2> {{officer.first_name}} {{officer.last_name}}, badge #{{officer.badge}} </h2>
+	    <p><strong>Department:</strong> {{officer.department}}</p>
+	    <h2>Complaints</h2>
+	    <ul>
+	    	{% for details in details_list %}
+	    		<li>
+	                
+	    			
+	    			{% if details.incident.case_number %}<a href='/police_archive/complaint/{{details.incident.case_number}}'>{{details.incident.case_number}}</a>{% else %}No Case Number Found{% endif %}{% if details.incident.office %}, {{details.incident.get_office_display}}{% else %}, No office found{% endif %}{% if details.allegation %}, {{details.allegation}}{% endif %}{% if details.finding %}, {{details.finding}}{% endif %}{% if details.action %}, {{details.action}}{% endif %}  
+	                       
+		    	</li>
+	    	{% endfor %}
+    </div>
 
 
 {% endblock %}

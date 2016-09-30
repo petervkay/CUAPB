@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Officer, Incident, Details
+from .models import Officer, Incident, Details, SiteText
 
 class DetailsInlineAdmin (admin.TabularInline):
 	model = Details
@@ -20,8 +20,12 @@ class DetailsAdmin(admin.ModelAdmin):
 	list_display=('incident','officer', 'allegation', 'finding', 'action')
 	search_fields = ['officer__last_name', 'incident__case_number']
 
+class SiteTextAdmin(admin.ModelAdmin):
+	list_display=('content1','content2')
+
 
 
 admin.site.register(Officer, OfficerAdmin)
 admin.site.register(Incident, IncidentAdmin)
 admin.site.register(Details, DetailsAdmin)
+admin.site.register(SiteText, SiteTextAdmin)

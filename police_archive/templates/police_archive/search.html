@@ -1,13 +1,14 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
-	<div id='search-info'>
-   	 <h2>CUAPB Police Complaint Archive</h2>
-   	 <p> CUAPB has spent years using data practices requests to obtain public records about formal police complaints.  The public has a right to this information, but the government does nothing to make it publicly available.  This archive provides a means for citizens to search an officer's name and see the complaints that have been brought against them.  The archive is extensive, but does not include all complaints made against officers.  It also does not include the countless complaints that do not make it into the formal system of a government office.</p>
+	<div class='page_title'>
+		<h2>{{SiteText.content1|striptags}}</h2>
+	</div>
 
-   	 <p> This system is fairly new. Please contact us with any feedback. </p>
+	<div id='search-info' class='text-box'>
+   	 <p> {{SiteText.content2|safe}}</p>
    	</div>
-   	<div class='officer_search_form'>
+   	<div class='officer_search_form text-box'>
    		<h2> Search by Officer </h2>
 	    <form method="get" action="results">
 	        <table>
@@ -22,7 +23,7 @@
 	    </form>
 	</div>
 
-	<div class='officer_search_form'>
+	<div class='officer_search_form text-box'>
    		<h2> Search by Complaint </h2>
 	    <form method="get" action="complaint_results">
 	        <table>
@@ -37,13 +38,12 @@
 	    </form>
 	</div>
 
-	<div class='browse'>
+	<div class='browse text-box'>
 		<h2> Browse by Last Name </h2>
 		<ul class='letters'>
 			{% for c in alphabet %}
 				<li><a href='/police_archive/browse/{{c}}'>{{c}}</a></li>
 			{% endfor %}
 		</ul>
-
 	</div>
 {% endblock %}

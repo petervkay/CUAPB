@@ -1,27 +1,29 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
+<h2 class='page_title'> Complaint Details </h2>
+<div class='text-box'>
+	<h2> Complaint #{{incident.case_number}}, {{incident.get_office_display }} </h2>
 
-<h2> Complaint #{{incident.case_number}}, {{incident.get_office_display }} </h2>
+	<table class='border'>
+		<tr>
+			<th> Officer </th>
+			<th> Department </th>
+			<th> Allegation </th>
+			<th> Finding </th>
+			<th> Chief's Action </th>
+		</tr>
 
-<table class='border'>
-	<tr>
-		<th> Officer </th>
-		<th> Department </th>
-		<th> Allegation </th>
-		<th> Finding </th>
-		<th> Chief's Action </th>
-	</tr>
-
-	{% for details in details_list %}
-	<tr>
-		<td><a href='/police_archive/officer/{{details.officer.badge}}'> {{details.officer.last_name}}, {{details.officer.first_name}} </a></td>
-		<td>{{details.department}}</td>
-		<td>{{details.allegation}}</td>
-		<td>{{details.finding}}</td>
-		<td>{{details.action}}</td>
-	</tr>
-	{% endfor %}
-</table>
+		{% for details in details_list %}
+		<tr>
+			<td><a href='/police_archive/officer/{{details.officer.badge}}'> {{details.officer.last_name}}, {{details.officer.first_name}} </a></td>
+			<td>{{details.department}}</td>
+			<td>{{details.allegation}}</td>
+			<td>{{details.finding}}</td>
+			<td>{{details.action}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
 
 {% endblock %}

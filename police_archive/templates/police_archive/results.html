@@ -1,8 +1,9 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
-	<div class='results'>
-	    <h2>Results</h2>
+	<h2 class='page_title'>Results</h2>
+	<div class='results text-box'>
+	    
 	    {% if search_results %}
 		    <ul>
 		    {% for officer in search_results %}
