@@ -45,7 +45,7 @@ class Details(models.Model):
 
 
 	def __str__(self):
-		return unicode(self.officer.first_name) + ' '+ unicode(self.officer.last_name)+ ', ' + unicode(self.incident)
+			return self.officer.first_name + ' '+ self.officer.last_name+ ', ' + self.incident.case_number
 
 	class Meta():
 		verbose_name_plural = "details"
