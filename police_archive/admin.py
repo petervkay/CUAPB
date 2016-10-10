@@ -10,6 +10,9 @@ class OfficerAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'badge', 'department')
     search_fields = ['first_name', 'last_name']
     inlines = [DetailsInlineAdmin]
+    class Media:
+    	js = ('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js','/static/admin/js/admin/popup.js')
+
 
 class IncidentAdmin(admin.ModelAdmin):
 	list_display = ('office','case_number')

@@ -8,15 +8,17 @@ from tinymce import models as tinymce_models
 
 
 class Officer(models.Model):
-    first_name = models.CharField(max_length=80, blank=True)
-    last_name = models.CharField(max_length=80, blank=True)
-    badge = models.IntegerField(blank=True)
-    department = models.CharField(max_length=50, blank=True)
+	first_name = models.CharField(max_length=80, blank=True)
+	last_name = models.CharField(max_length=80, blank=True)
+	badge = models.IntegerField(blank=True)
+	department = models.CharField(max_length=50, blank=True)
+	model_pic = models.ImageField(upload_to = "police_archive/officer_photos", default= 'noimage', blank=True)
+	description = tinymce_models.HTMLField(blank=True)
 
-    def __str__(self):
-    	return self.last_name + ', ' + self.first_name
+	def __str__(self):
+		return self.last_name + ', ' + self.first_name
 
-     
+	 
 
 
 
@@ -25,9 +27,9 @@ class Incident(models.Model):
 	case_number = models.CharField(max_length=50, blank=True)
 
 	OFFICE_CHOICES = (
-    ('CRA', 'Civilian Review Authority'),
-    ('IA', 'Internal Affairs'),
-    ('OPCR', 'Office of Police Conduct Review'),
+	('CRA', 'Civilian Review Authority'),
+	('IA', 'Internal Affairs'),
+	('OPCR', 'Office of Police Conduct Review'),
 	)
 	office = models.CharField(max_length=10,
 	choices=OFFICE_CHOICES,

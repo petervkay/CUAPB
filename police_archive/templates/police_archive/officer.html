@@ -1,11 +1,14 @@
 {% extends 'police_archive/base.html' %}
 
 {% block content %}
+	{% load staticfiles %}
 
     <h2 class='page_title'> Results </h2>
     <div class='text-box'>    
 	    <h2> {{officer.first_name}} {{officer.last_name}}, badge #{{officer.badge}} </h2>
 	    <p><strong>Department:</strong> {{officer.department}}</p>
+	    <img src='/{{officer.model_pic.url }}'>
+	    <p>{{officer.description|safe}}</p>
 	    <h2>Complaints</h2>
 	    <ul>
 	    	{% for details in details_list %}

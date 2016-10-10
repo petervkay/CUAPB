@@ -80,7 +80,7 @@ body {
 }
 
 .officer_search_form table {
-    table-layout:fixed;
+	table-layout:fixed;
 }
 
 .officer_search_form tr {
@@ -88,12 +88,12 @@ body {
 }
 
 .officer_search_form th {
-    width:200px;
-    text-align: left;
+	width:200px;
+	text-align: left;
 }
 
 .officer_search_form td {
-    text-align:left;
+	text-align:left;
 
 }
 
@@ -128,11 +128,11 @@ ul.letters li a {
 /*results.html, complaint_results.html */
 
 .results h2 {
-    font-size:24px;
+	font-size:24px;
 }
 
 .results ul {
-    font-size:20px;
+	font-size:20px;
 }
 
 /* Footer */
@@ -140,7 +140,7 @@ ul.letters li a {
 
 
 footer {
-    text-align: center;
+	text-align: center;
     width: 100%;
     height:140px;
     position:absolute;
@@ -152,7 +152,7 @@ footer {
 }
 
 footer a {
-    text-decoration:none;
+	text-decoration:none;
 }
 
 .back-to-main {
@@ -175,7 +175,7 @@ footer a {
 }
 
 footer .donate-strip {
-    text-align: center;
+	text-align: center;
     width: 100%;
     background-color: #57ef72;
     padding: 4px 0;
@@ -183,13 +183,13 @@ footer .donate-strip {
 }
 
 footer .donate-strip p {
-    margin:0;
-    color: black;
+	margin:0;
+	color: black;
     font-weight: 600;
 }
 
 footer .credits {
-    color:black;
+	color:black;
     padding:3px 0;
 }
 

@@ -11,7 +11,7 @@ class SearchForm(forms.Form):
     choices=[('','')]
     for item in department_list :
     	choices.append((item,item))
-    department=forms.ChoiceField(choices, label='Department')
+    department=forms.ChoiceField(choices, label='Department', required=False)
 
 class ComplaintSearchForm(forms.Form):
 	input = forms.CharField(label='Case Number', max_length=100)

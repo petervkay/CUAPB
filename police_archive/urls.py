@@ -2,7 +2,8 @@ from django.conf.urls import url
 from django.conf.urls import handler404
 from django.conf import settings
 from . import views
-
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -20,4 +21,6 @@ urlpatterns = [
 
     # url(r'^officer/(?P<officer_badge>\d+)/', views.officer, name='officer'),
     # url(r'^incident/(?P<case_number>\w+\-\w+)/', views.incident, name='incident'),
-]
+] 
+
+
