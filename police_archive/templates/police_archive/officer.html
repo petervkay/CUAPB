@@ -7,7 +7,10 @@
     <div class='text-box'>    
 	    <h2> {{officer.first_name}} {{officer.last_name}}, badge #{{officer.badge}} </h2>
 	    <p><strong>Department:</strong> {{officer.department}}</p>
-	    <img src='/{{officer.model_pic.url }}'>
+	  
+	    {% if officer.model_pic.url != 'media/noimage'%}
+	    	<img src='/{{officer.model_pic.url }}'>
+	    {% endif %}
 	    <p>{{officer.description|safe}}</p>
 	    <h2>Complaints</h2>
 	    <ul>
