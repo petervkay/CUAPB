@@ -1,7 +1,6 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from forms import IncidentAdminForm
 
 from .models import Officer, Incident, Details, SiteText
 
@@ -30,7 +29,6 @@ class OfficerAdmin(ImportExportModelAdmin):
     
 
 class IncidentAdmin(admin.ModelAdmin):
-	form = IncidentAdminForm
 	list_display = ('office','case_number')
 	search_fields = ['case_number']
 	inlines = [DetailsInlineAdmin]
