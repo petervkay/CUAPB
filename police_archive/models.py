@@ -8,12 +8,12 @@ from tinymce import models as tinymce_models
 
 
 class Officer(models.Model):
-	first_name = models.CharField(max_length=80, blank=True)
-	last_name = models.CharField(max_length=80, blank=True)
-	badge = models.IntegerField(blank=True)
-	department = models.CharField(max_length=50, blank=True)
-	model_pic = models.ImageField(upload_to = "police_archive/officer_photos", default= 'noimage', blank=True)
-	description = tinymce_models.HTMLField(blank=True)
+	first_name = models.CharField(max_length=80, blank=True, null=True)
+	last_name = models.CharField(max_length=80, blank=True, null=True)
+	badge = models.IntegerField(blank=True, null=True)
+	department = models.CharField(max_length=50, blank=True, null=True)
+	model_pic = models.ImageField(upload_to = "police_archive/officer_photos", default= 'noimage', blank=True, null=True)
+	description = tinymce_models.HTMLField(blank=True, null=True)
 
 	def __str__(self):
 		return self.last_name + ', ' + self.first_name
@@ -23,7 +23,7 @@ class Officer(models.Model):
 
 
 class Incident(models.Model):
-	officers2 = models.ManyToManyField(Officer, through='Details')
+	officers = models.ManyToManyField(Officer, through='Details')
 	case_number = models.CharField(max_length=50, blank=True)
 
 	OFFICE_CHOICES = (

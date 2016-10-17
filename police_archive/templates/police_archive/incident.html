@@ -16,7 +16,7 @@
 
 		{% for details in details_list %}
 		<tr>
-			<td><a href='/police_archive/officer/{{details.officer.badge}}'> {{details.officer.last_name}}, {{details.officer.first_name}} </a></td>
+			<td><a href='/police_archive/officer/{{details.officer.id}}'> {{details.officer.last_name}}, {{details.officer.first_name}} </a></td>
 			<td>{{details.department}}</td>
 			<td>{{details.allegation}}</td>
 			<td>{{details.finding}}</td>

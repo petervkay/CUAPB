@@ -79,7 +79,7 @@ def officer(request, officer_id):
 
 def incident(request, incident_id):
 	incident=Incident.objects.all().get(case_number=incident_id)
-	officer_list = incident.officers2.all()
+	officer_list = incident.officers.all()
 	officer_list = officer_list.order_by('last_name')
 	details_list = Details.objects.filter(incident=incident)
 	return render(request, 'police_archive/incident.html', {
