@@ -30,16 +30,27 @@ class OfficerAdmin(ImportExportModelAdmin):
 
 
 
-    
+class IncidentResource(resources.ModelResource):
 
-class IncidentAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Incident   
+
+class IncidentAdmin(ImportExportModelAdmin):
 	list_display = ('office','case_number')
 	search_fields = ['case_number']
 	inlines = [DetailsInlineAdmin]
+	resource_class = IncidentResource
+
+
+class DetailsResource(ImportExportModelAdmin):
+
+    class Meta:
+        model = Details   
 
 class DetailsAdmin(admin.ModelAdmin):
 	list_display=('incident','officer', 'allegation', 'finding', 'action')
 	search_fields = ['officer__last_name', 'incident__case_number']
+	resource_class = DetailsResource
 
 class SiteTextAdmin(admin.ModelAdmin):
 	form=AdminTextForm
