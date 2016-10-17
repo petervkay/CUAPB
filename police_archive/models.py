@@ -18,6 +18,9 @@ class Officer(models.Model):
 	def __str__(self):
 		return self.last_name + ', ' + self.first_name
 
+	class Meta():
+		ordering = ['last_name']	
+
 	 
 
 
@@ -38,6 +41,9 @@ class Incident(models.Model):
 	def __str__(self):
 		return self.case_number
 
+	class Meta():
+		ordering = ['-case_number']
+
 class Details(models.Model):
 	officer = models.ForeignKey(Officer, on_delete=models.CASCADE)
 	incident = models.ForeignKey(Incident, on_delete=models.CASCADE)
@@ -52,6 +58,7 @@ class Details(models.Model):
 	class Meta():
 		verbose_name_plural = "details"
 
+
 class SiteText(models.Model):
 	content1 = tinymce_models.HTMLField()
-	content2 = tinymce_models.HTMLField()
+	content2 = models.TextField(max_length=500, blank=True)

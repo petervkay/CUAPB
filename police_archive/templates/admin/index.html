@@ -1,0 +1,12 @@
+{% extends "admin:admin/index.html" %}
+
+{% block sidebar %}
+    {{block.super}}
+    <div>
+        <form action="submit" method="post" action=>
+        	{% csrf_token %}
+		    <input type="submit" value="Backup Site" formaction='backup/' class='green-btn'>
+		</form>
+    </div>
+{% endblock %}
+

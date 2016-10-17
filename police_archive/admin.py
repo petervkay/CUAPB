@@ -1,12 +1,14 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+from forms import AdminTextForm, OfficerTextForm
 
 from .models import Officer, Incident, Details, SiteText
 
 class DetailsInlineAdmin (admin.TabularInline):
 	model = Details
 	extra = 5
+	
 
 
 
@@ -20,6 +22,8 @@ class OfficerAdmin(ImportExportModelAdmin):
     search_fields = ['first_name', 'last_name']
     inlines = [DetailsInlineAdmin]
     resource_class = OfficerResource
+
+    form=OfficerTextForm
 
     class Media:
     	js = ('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js','/static/admin/js/admin/popup.js')
@@ -38,7 +42,7 @@ class DetailsAdmin(admin.ModelAdmin):
 	search_fields = ['officer__last_name', 'incident__case_number']
 
 class SiteTextAdmin(admin.ModelAdmin):
-	list_display=('content1','content2')
+	form=AdminTextForm
 
 
 

@@ -5,6 +5,7 @@ from police_archive.models import Officer, Incident, Details, SiteText
 from string import ascii_uppercase
 from django.template import RequestContext
 from police_archive.forms import SearchForm, ComplaintSearchForm
+from django.core.management import call_command
 
 def search(request):
     # if this is a POST request we need to process the form data
@@ -90,6 +91,9 @@ def browse(request, letter):
 	officer_list = officer_list.order_by('last_name')
 	return render(request, 'police_archive/browse.html', {
         'officer_list':officer_list,'class_name':'browse', 'alphabet':ascii_uppercase})
+
+def backup(request):
+    return HttpResponse('Backup Made')
 
 
 

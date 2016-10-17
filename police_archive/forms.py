@@ -1,5 +1,6 @@
 from django import forms
-from police_archive.models import Officer
+from police_archive.models import Officer, SiteText
+from tinymce.widgets import TinyMCE
 
 class SearchForm(forms.Form):
     text = forms.CharField(label='Name or Badge Number', max_length=100)
@@ -15,3 +16,20 @@ class SearchForm(forms.Form):
 
 class ComplaintSearchForm(forms.Form):
 	input = forms.CharField(label='Case Number', max_length=100)
+
+
+class AdminTextForm(forms.ModelForm):
+
+    content1 = forms.CharField(widget=TinyMCE(attrs={'cols': 10, 'rows': 30}))
+    content2= forms.CharField(widget=TinyMCE(attrs={'cols': 50, 'rows': 30}))
+
+    class Meta:
+        model = SiteText
+        fields= '__all__'
+
+class OfficerTextForm(forms.ModelForm):
+    description = forms.CharField(widget=TinyMCE(attrs={'cols': 50, 'rows': 30}))
+
+    class Meta:
+        model = SiteText
+        fields= '__all__'

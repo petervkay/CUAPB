@@ -23,16 +23,19 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.conf.urls.static import static
 
+from police_archive import views
 
 
 
 
 
 urlpatterns = [
+    url(r'^admin/backup/', views.backup),
+
 	url(r'^police_archive/', include('police_archive.urls')),
 	url(r'^admin/', admin.site.urls),
 	url(r'^tinymce/', include('tinymce.urls')),
-
+  
   
 ]
 if settings.DEBUG is True:
