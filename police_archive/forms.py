@@ -28,7 +28,7 @@ class AdminTextForm(forms.ModelForm):
         fields= '__all__'
 
 class OfficerTextForm(forms.ModelForm):
-    description = forms.CharField(widget=TinyMCE(attrs={'cols': 50, 'rows': 30}))
+    description = forms.CharField(widget=TinyMCE(attrs={'cols': 50, 'rows': 30}), required=False)
 
     class Meta:
         model = SiteText
