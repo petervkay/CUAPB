@@ -45,7 +45,8 @@ class IncidentAdmin(ImportExportModelAdmin):
 class DetailsResource(ImportExportModelAdmin):
 
     class Meta:
-        model = Details   
+        model = Details
+
 
 class DetailsAdmin(admin.ModelAdmin):
 	list_display=('incident','officer', 'allegation', 'finding', 'action')

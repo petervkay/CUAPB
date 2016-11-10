@@ -57,6 +57,7 @@ class Details(models.Model):
 
 	class Meta():
 		verbose_name_plural = "details"
+		ordering = ['incident__case_number']
 
 
 class SiteText(models.Model):
