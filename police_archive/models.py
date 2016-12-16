@@ -26,7 +26,7 @@ class Officer(models.Model):
 
 
 class Incident(models.Model):
-	officers = models.ManyToManyField(Officer, through='Details')
+	officer = models.ManyToManyField(Officer, through='Details')
 	case_number = models.CharField(max_length=50, blank=True)
 
 	OFFICE_CHOICES = (
@@ -45,8 +45,8 @@ class Incident(models.Model):
 		ordering = ['-case_number']
 
 class Details(models.Model):
-	officer = models.ForeignKey(Officer, on_delete=models.CASCADE)
-	incident = models.ForeignKey(Incident, on_delete=models.CASCADE)
+	officer = models.ForeignKey(Officer, on_delete=models.CASCADE, blank=True)
+	incident = models.ForeignKey(Incident, on_delete=models.CASCADE, blank=True)
 	allegation = models.CharField(max_length=50, blank=True)
 	finding = models.CharField(max_length=50, blank=True)
 	action = models.CharField(max_length=50, blank=True)

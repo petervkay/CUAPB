@@ -1,6 +1,6 @@
 from django.contrib import admin
-from import_export import resources
-from import_export.admin import ImportExportModelAdmin
+from import_export import resources, widgets, fields
+from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
 from forms import AdminTextForm, OfficerTextForm
 
 from .models import Officer, Incident, Details, SiteText
@@ -14,26 +14,29 @@ class DetailsInlineAdmin (admin.TabularInline):
 
 class OfficerResource(resources.ModelResource):
 
-    class Meta:
-        model = Officer
-        
+	class Meta:
+		model = Officer
+		
 class OfficerAdmin(ImportExportModelAdmin):
-    list_display = ('first_name', 'last_name', 'badge', 'department')
-    search_fields = ['first_name', 'last_name']
-    inlines = [DetailsInlineAdmin]
-    resource_class = OfficerResource
+	list_display = ('first_name', 'last_name', 'badge', 'department')
+	search_fields = ['first_name', 'last_name']
+	inlines = [DetailsInlineAdmin]
+	resource_class = OfficerResource
 
-    form=OfficerTextForm
+	form=OfficerTextForm
 
-    class Media:
-    	js = ('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js','/static/admin/js/admin/popup.js')
+	class Media:
+		js = ('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js','/static/admin/js/admin/popup.js')
 
 
 
 class IncidentResource(resources.ModelResource):
 
-    class Meta:
-        model = Incident   
+
+	class Meta:
+		fields = ('officer','case_number', 'office')
+		model = Incident
+		import_id_fields = ['case_number']
 
 class IncidentAdmin(ImportExportModelAdmin):
 	list_display = ('office','case_number')
@@ -42,13 +45,40 @@ class IncidentAdmin(ImportExportModelAdmin):
 	resource_class = IncidentResource
 
 
-class DetailsResource(ImportExportModelAdmin):
-
-    class Meta:
-        model = Details
 
 
-class DetailsAdmin(admin.ModelAdmin):
+class DetailsResource(resources.ModelResource):
+
+	# class FullNameForeignKeyWidget(widgets.ForeignKeyWidget):
+	#     def get_queryset(self, value, row):
+	#         return Officer.objects.filter(
+	#             first_name__iexact=row["first_name"],
+	#             last_name__iexact=row["last_name"]
+
+	#         )
+
+	class FullNameForeignKeyWidget(widgets.ForeignKeyWidget):
+	    def get_queryset(self, value, row):
+	        return self.model.objects.filter(
+	            badge__iexact=row["badge"]
+	        )
+
+	officer = fields.Field(
+		column_name='officer',
+		attribute='officer',
+		widget=FullNameForeignKeyWidget(Officer, 'last_name'))
+
+	incident = fields.Field(
+		column_name='incident',
+		attribute='incident',
+		widget=widgets.ForeignKeyWidget(Incident, 'case_number'))
+
+	class Meta:
+		fields = ('id','officer','incident', 'allegation', 'finding', 'action')
+		model = Details
+		
+
+class DetailsAdmin(ImportExportModelAdmin):
 	list_display=('incident','officer', 'allegation', 'finding', 'action')
 	search_fields = ['officer__last_name', 'incident__case_number']
 	resource_class = DetailsResource
