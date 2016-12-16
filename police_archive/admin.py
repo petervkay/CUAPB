@@ -49,7 +49,7 @@ class IncidentAdmin(ImportExportModelAdmin):
 
 class DetailsResource(resources.ModelResource):
 
-	class FullNameForeignKeyWidget(widgets.ForeignKeyWidget):
+	class BadgeForeignKeyWidget(widgets.ForeignKeyWidget):
 	    def get_queryset(self, value, row):
 	        return self.model.objects.filter(
 	            badge__iexact=row["badge"]
@@ -58,7 +58,7 @@ class DetailsResource(resources.ModelResource):
 	officer = fields.Field(
 		column_name='officer',
 		attribute='officer',
-		widget=FullNameForeignKeyWidget(Officer, 'last_name'))
+		widget=BadgeForeignKeyWidget(Officer, 'last_name'))
 
 	incident = fields.Field(
 		column_name='incident',
