@@ -8,7 +8,6 @@
 	<table class='border'>
 		<tr>
 			<th> Officer </th>
-			<th> Department </th>
 			<th> Allegation </th>
 			<th> Finding </th>
 			<th> Chief's Action </th>
@@ -17,7 +16,6 @@
 		{% for details in details_list %}
 		<tr>
 			<td><a href='/police_archive/officer/{{details.officer.id}}'> {{details.officer.last_name}}, {{details.officer.first_name}} </a></td>
-			<td>{{details.department}}</td>
 			<td>{{details.allegation}}</td>
 			<td>{{details.finding}}</td>
 			<td>{{details.action}}</td>

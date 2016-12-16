@@ -49,14 +49,6 @@ class IncidentAdmin(ImportExportModelAdmin):
 
 class DetailsResource(resources.ModelResource):
 
-	# class FullNameForeignKeyWidget(widgets.ForeignKeyWidget):
-	#     def get_queryset(self, value, row):
-	#         return Officer.objects.filter(
-	#             first_name__iexact=row["first_name"],
-	#             last_name__iexact=row["last_name"]
-
-	#         )
-
 	class FullNameForeignKeyWidget(widgets.ForeignKeyWidget):
 	    def get_queryset(self, value, row):
 	        return self.model.objects.filter(
