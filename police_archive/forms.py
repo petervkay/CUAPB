@@ -5,7 +5,8 @@ from tinymce.widgets import TinyMCE
 class SearchForm(forms.Form):
     text = forms.CharField(label='Name or Badge Number', max_length=100)
     department_list=Officer.objects.all().values_list('department', flat='true')
-    department_list = list(set(department_list))
+    department_list = list(set(department_list))  # deduplicates
+    department_list = filter(None, department_list)
     for value in department_list:
     	if Officer.objects.all().filter(department=value)==0:
     		department_list.remove(value)
