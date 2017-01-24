@@ -45,9 +45,6 @@ a:hover {
     margin:20px;
 }
 
-.text-box a:hover, ul.letters li a:hover {
-    color:#57EF72;
-}  
 
 /* Background */
 body {
@@ -177,7 +174,7 @@ footer a {
 footer .donate-strip {
 	text-align: center;
     width: 100%;
-    background-color: #57ef72;
+    background-color: white;
     padding: 4px 0;
 
 }
