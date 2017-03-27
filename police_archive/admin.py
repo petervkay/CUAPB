@@ -34,13 +34,13 @@ class IncidentResource(resources.ModelResource):
 
 
 	class Meta:
-		fields = ('officer','case_number', 'office')
+		fields = ('officer','case_number', 'office', 'department')
 		model = Incident
 		import_id_fields = ['case_number']
 
 class IncidentAdmin(ImportExportModelAdmin):
-	list_display = ('office','case_number')
-	search_fields = ['case_number']
+	list_display = ('office','case_number', 'department')
+	search_fields = ['case_number','department']
 	inlines = [DetailsInlineAdmin]
 	resource_class = IncidentResource
 
@@ -55,15 +55,24 @@ class DetailsResource(resources.ModelResource):
 	            badge__iexact=row["badge"]
 	        )
 
+	class IncidentForeignKeyWidget(widgets.ForeignKeyWidget):
+	    def get_queryset(self, value, row):
+	        return self.model.objects.filter(
+	            case_number__iexact=row["incident"],
+	            department__iexact=row["department"]
+	        )        
+
 	officer = fields.Field(
 		column_name='officer',
 		attribute='officer',
-		widget=BadgeForeignKeyWidget(Officer, 'last_name'))
+		widget=BadgeForeignKeyWidget(Officer, 'last_name')
+	)
 
 	incident = fields.Field(
 		column_name='incident',
 		attribute='incident',
-		widget=widgets.ForeignKeyWidget(Incident, 'case_number'))
+		widget=IncidentForeignKeyWidget(Incident, 'case_number')
+	)
 
 	class Meta:
 		fields = ('id','officer','incident', 'allegation', 'finding', 'action')

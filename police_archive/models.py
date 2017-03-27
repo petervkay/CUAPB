@@ -28,6 +28,7 @@ class Officer(models.Model):
 class Incident(models.Model):
 	officer = models.ManyToManyField(Officer, through='Details')
 	case_number = models.CharField(max_length=50, blank=True)
+	department = models.CharField(max_length=50, blank=True, null=True)
 
 	OFFICE_CHOICES = (
 	('CRA', 'Civilian Review Authority'),
