@@ -58,7 +58,6 @@ class DetailsResource(resources.ModelResource):
 	class IncidentForeignKeyWidget(widgets.ForeignKeyWidget):
 	    def get_queryset(self, value, row):
 	        return self.model.objects.filter(
-	            case_number__iexact=row["incident"],
 	            department__iexact=row["department"]
 	        )        
 
@@ -75,8 +74,9 @@ class DetailsResource(resources.ModelResource):
 	)
 
 	class Meta:
-		fields = ('id','officer','incident', 'allegation', 'finding', 'action')
+		fields = ('officer','incident', 'allegation', 'finding', 'action')
 		model = Details
+		import_id_fields = {'officer', 'incident'}
 		
 
 class DetailsAdmin(ImportExportModelAdmin):
