@@ -36,7 +36,7 @@ class IncidentResource(resources.ModelResource):
 	class Meta:
 		fields = ('officer','case_number', 'office', 'department')
 		model = Incident
-		import_id_fields = ['case_number']
+		import_id_fields = ['case_number', 'department']
 
 class IncidentAdmin(ImportExportModelAdmin):
 	list_display = ('office','case_number', 'department')
