@@ -19,7 +19,8 @@ class Officer(models.Model):
 		return self.last_name + ', ' + self.first_name
 
 	class Meta():
-		ordering = ['last_name']	
+		ordering = ['last_name']
+		unique_together = ["first_name","last_name","badge", "department"]
 
 	 
 
@@ -44,6 +45,7 @@ class Incident(models.Model):
 
 	class Meta():
 		ordering = ['-case_number']
+		unique_together = ["case_number", "department"]
 
 class Details(models.Model):
 	officer = models.ForeignKey(Officer, on_delete=models.CASCADE, blank=True)
