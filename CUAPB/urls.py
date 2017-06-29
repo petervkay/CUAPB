@@ -31,7 +31,7 @@ from police_archive import views
 
 urlpatterns = [
     url(r'^admin/backup/', views.backup),
-
+    url(r'^$', lambda r: HttpResponseRedirect('police_archive/')),
 	url(r'^police_archive/', include('police_archive.urls')),
 	url(r'^admin/', admin.site.urls),
 	url(r'^tinymce/', include('tinymce.urls')),
