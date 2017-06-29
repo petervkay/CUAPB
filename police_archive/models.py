@@ -35,6 +35,7 @@ class Incident(models.Model):
 	('CRA', 'Civilian Review Authority'),
 	('IA', 'Internal Affairs'),
 	('OPCR', 'Office of Police Conduct Review'),
+	('POST', 'Post Board')
 	)
 	office = models.CharField(max_length=10,
 	choices=OFFICE_CHOICES,
